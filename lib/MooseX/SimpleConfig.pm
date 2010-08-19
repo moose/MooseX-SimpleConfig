@@ -150,6 +150,10 @@ C<new_with_options>.  Invokes L<Config::Any> to parse C<configfile>.
 
 Brandon L. Black, E<lt>blblack@gmail.comE<gt>
 
+=head1 CURRENT MAINTAINER
+
+Tomas Doran (t0m), C<< <bobtfish@bobtfish.net> >>.
+
 =head1 LICENSE
 
 This library is free software; you can redistribute it and/or modify
