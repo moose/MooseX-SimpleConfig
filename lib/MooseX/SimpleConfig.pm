@@ -112,6 +112,15 @@ turn support any of a variety of different config formats, detected
 by the file extension.  See L<Config::Any> for more details about
 supported formats.
 
+To pass additional arguments to L<Config::Any> you must provide a
+C<config_any_args()> method, for example:
+
+  sub config_any_args {
+    return {
+      driver_args => { General => { '-InterPolateVars' => 1 } }
+    };
+  }
+
 Like all L<MooseX::ConfigFromFile> -derived configfile loaders, this
 module is automatically supported by the L<MooseX::Getopt> role as
 well, which allows specifying C<-configfile> on the commandline.
