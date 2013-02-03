@@ -8,7 +8,6 @@ no Moose;
 
 package MXDefaultConfigTest;
 use Moose;
-use Path::Class::File;
 extends 'MXDefaultConfigTestBase';
 with 'MooseX::SimpleConfig';
 
