@@ -4,6 +4,7 @@ Revision history for {{$dist->name}}
   - repository migrated from shadowcat to the github moose organization
   - eliminate race conditions between tests by using separate tempdirs for
     config files
+  - resolve failing test report by removing unnecessary and undeclared prereq
 
 0.09      2010-08-15
   - Fix issue with MANIFEST
