@@ -13,7 +13,7 @@ BEGIN {
     if($@) {
         plan skip_all => "Config::General required for this test";
     }
-    
+
     plan tests => 6;
 
     use_ok('MXDriverArgsConfigTest');

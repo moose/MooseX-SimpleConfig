@@ -118,9 +118,11 @@ C<config_any_args()> method, for example:
 
 Like all L<MooseX::ConfigFromFile> -derived configfile loaders, this
 module is automatically supported by the L<MooseX::Getopt> role as
-well, which allows specifying C<-configfile> on the commandline.
+well, which allows specifying C<-configfile> on the command line.
 
 =head1 ATTRIBUTES
+
+=for stopwords configfile
 
 =head2 configfile
 

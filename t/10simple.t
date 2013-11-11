@@ -16,7 +16,7 @@ BEGIN {
             plan skip_all => "YAML or YAML::Syck required for this test";
         }
     }
-    
+
     plan tests => 6;
 
     use_ok('MXSimpleConfigTest');
