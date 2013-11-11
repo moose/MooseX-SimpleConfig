@@ -1,5 +1,6 @@
-Revision history for Perl extension MooseX::SimpleConfig
+Revision history for {{$dist->name}}
 
+{{$NEXT}}
   - repository migrated from shadowcat to the github moose organization
 
 0.09 - Aug 15, 2010

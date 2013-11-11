@@ -1,11 +1,10 @@
 package MooseX::SimpleConfig;
+# ABSTRACT: A Moose role for setting attributes from a simple configfile
 
 use Moose::Role;
 with 'MooseX::ConfigFromFile';
 
-our $VERSION   = '0.09';
-
-use Config::Any ();
+use Config::Any 0.13 ();
 
 sub get_config_from_file {
     my ($class, $file) = @_;
@@ -47,10 +46,6 @@ no Moose::Role; 1;
 __END__
 
 =pod
-
-=head1 NAME
-
-MooseX::SimpleConfig - A Moose role for setting attributes from a simple configfile
 
 =head1 SYNOPSIS
 
@@ -154,18 +149,5 @@ to C<new_with_config> will override anything loaded from the configfile.
 
 Called internally by either C<new_with_config> or L<MooseX::Getopt>'s
 C<new_with_options>.  Invokes L<Config::Any> to parse C<configfile>.
-
-=head1 AUTHOR
-
-Brandon L. Black, E<lt>blblack@gmail.comE<gt>
-
-=head1 CURRENT MAINTAINER
-
-Tomas Doran (t0m), C<< <bobtfish@bobtfish.net> >>.
-
-=head1 LICENSE
-
-This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself.
 
 =cut
