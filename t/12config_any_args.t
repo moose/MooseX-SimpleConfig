@@ -3,16 +3,11 @@ use warnings;
 
 use lib 't/lib';
 
+use Test::More;
+use Test::Requires 'Config::General';
+plan tests => 6;
+
 BEGIN {
-    use Test::More;
-
-    eval "use Config::General ()";
-    if($@) {
-        plan skip_all => "Config::General required for this test";
-    }
-
-    plan tests => 6;
-
     use_ok('MXDriverArgsConfigTest');
 }
 
