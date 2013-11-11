@@ -1,5 +1,7 @@
 Revision history for Perl extension MooseX::SimpleConfig
 
+  - repository migrated from shadowcat to the github moose organization
+
 0.09 - Aug 15, 2010
   - Fix issue with MANIFEST
 
