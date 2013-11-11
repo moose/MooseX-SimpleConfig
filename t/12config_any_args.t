@@ -3,9 +3,9 @@ use warnings;
 
 use lib 't/lib';
 
-use Test::More;
+use Test::More tests => 6;
 use Test::Requires 'Config::General';
-plan tests => 6;
+use Test::Fatal;
 
 BEGIN {
     use_ok('MXDriverArgsConfigTest');
@@ -29,11 +29,12 @@ Req_Attr foo
 EOM
     close($test_conf);
 
-    my $foo = eval {
-        MXDriverArgsConfigTest->new_with_config(configfile => 'test.conf');
-    };
-    ok(!$@, 'Did not die with good General configfile')
-        or diag $@;
+    my $foo;
+    is(
+        exception { $foo = MXDriverArgsConfigTest->new_with_config(configfile => 'test.conf') },
+        undef,
+        'Did not die with good General configfile',
+    );
 
     is($foo->req_attr, 'foo', 'req_attr works');
     is($foo->direct_attr, 123, 'direct_attr works');

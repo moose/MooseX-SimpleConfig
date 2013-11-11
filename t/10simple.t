@@ -1,11 +1,11 @@
 use strict;
 use warnings;
 
+use Test::More;
+use Test::Fatal;
 use lib 't/lib';
 
 BEGIN {
-    use Test::More;
-
     eval "use YAML::Syck ()";
     if($@) {
         eval "use YAML ()";
@@ -20,11 +20,11 @@ BEGIN {
 }
 
 # Does it work with no configfile and not barf?
-{
-    eval { MXSimpleConfigTest->new(req_attr => 'foo') };
-    ok(!$@, 'Did not die with no configfile specified')
-        or diag $@;
-}
+is(
+    exception { MXSimpleConfigTest->new(req_attr => 'foo') },
+    undef,
+    'Did not die with no configfile specified',
+);
 
 # Can it load a simple YAML file with the options
 {
@@ -33,11 +33,12 @@ BEGIN {
     print $test_yaml "direct_attr: 123\ninherited_ro_attr: asdf\nreq_attr: foo\n";
     close($test_yaml);
 
-    my $foo = eval {
-        MXSimpleConfigTest->new_with_config(configfile => 'test.yaml');
-    };
-    ok(!$@, 'Did not die with good YAML configfile')
-        or diag $@;
+    my $foo;
+    is(
+        exception { $foo = MXSimpleConfigTest->new_with_config(configfile => 'test.yaml') },
+        undef,
+        'Did not die with good YAML configfile',
+    );
 
     is($foo->req_attr, 'foo', 'req_attr works');
     is($foo->direct_attr, 123, 'direct_attr works');

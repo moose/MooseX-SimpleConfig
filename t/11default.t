@@ -3,6 +3,8 @@ use warnings;
 
 use lib 't/lib';
 use Test::More;
+use Test::Fatal;
+
 our @classes;
 BEGIN {
 
@@ -30,11 +32,12 @@ BEGIN {
 }
 
 foreach my $class (@classes) {
-    my $foo = eval {
-        $class->new_with_config();
-    };
-    ok(!$@, 'Did not die with good YAML configfile')
-        or diag $@;
+    my $foo;
+    is(
+        exception { $foo = $class->new_with_config() },
+        undef,
+        'Did not die with good YAML configfile',
+    );
 
     is($foo->req_attr, 'foo', 'req_attr works');
     is($foo->direct_attr, 123, 'direct_attr works');
