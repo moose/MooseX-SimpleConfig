@@ -4,6 +4,8 @@ use warnings;
 use lib 't/lib';
 use Test::More;
 use Test::Fatal;
+use File::Temp 'tempdir';
+use File::Spec::Functions;
 
 our @classes;
 BEGIN {
@@ -23,13 +25,18 @@ BEGIN {
 
 # Can it load a simple YAML file with the options
 #  based on a default in the configfile attr
+
+my $tempdir = tempdir(DIR => 't', CLEANUP => 1);
 {
-    open(my $test_yaml, '>', 'test.yaml')
-      or die "Cannot create test.yaml: $!";
+    my $configfile = catfile($tempdir, 'test.yaml');
+
+    open(my $test_yaml, '>', $configfile)
+      or die "Cannot create $configfile: $!";
     print $test_yaml "direct_attr: 123\ninherited_ro_attr: asdf\nreq_attr: foo\n";
     close($test_yaml);
-
 }
+
+chdir $tempdir;
 
 foreach my $class (@classes) {
     my $foo;
@@ -45,5 +52,3 @@ foreach my $class (@classes) {
 }
 
 done_testing;
-
-END { unlink('test.yaml') }

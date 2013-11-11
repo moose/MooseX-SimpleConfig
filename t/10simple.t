@@ -3,6 +3,8 @@ use warnings;
 
 use Test::More;
 use Test::Fatal;
+use File::Temp 'tempdir';
+use File::Spec::Functions;
 use lib 't/lib';
 
 BEGIN {
@@ -28,14 +30,17 @@ is(
 
 # Can it load a simple YAML file with the options
 {
-    open(my $test_yaml, '>', 'test.yaml')
-      or die "Cannot create test.yaml: $!";
+    my $tempdir = tempdir(DIR => 't', CLEANUP => 1);
+    my $configfile = catfile($tempdir, 'test.yaml');
+
+    open(my $test_yaml, '>', $configfile)
+      or die "Cannot create $configfile: $!";
     print $test_yaml "direct_attr: 123\ninherited_ro_attr: asdf\nreq_attr: foo\n";
     close($test_yaml);
 
     my $foo;
     is(
-        exception { $foo = MXSimpleConfigTest->new_with_config(configfile => 'test.yaml') },
+        exception { $foo = MXSimpleConfigTest->new_with_config(configfile => $configfile) },
         undef,
         'Did not die with good YAML configfile',
     );
@@ -44,5 +49,3 @@ is(
     is($foo->direct_attr, 123, 'direct_attr works');
     is($foo->inherited_ro_attr, 'asdf', 'inherited_ro_attr works');
 }
-
-END { unlink('test.yaml') }

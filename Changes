@@ -2,6 +2,8 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
   - repository migrated from shadowcat to the github moose organization
+  - eliminate race conditions between tests by using separate tempdirs for
+    config files
 
 0.09      2010-08-15
   - Fix issue with MANIFEST
