@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.10      2013-11-13 01:13:05Z
   - repository migrated from shadowcat to the github moose organization
   - eliminate race conditions between tests by using separate tempdirs for
     config files
