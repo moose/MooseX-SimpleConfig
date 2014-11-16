@@ -1,5 +1,5 @@
 package MooseX::SimpleConfig;
-# ABSTRACT: A Moose role for setting attributes from a simple configfile
+# ABSTRACT: A Moose role for setting attributes from a simple configuration file
 # KEYWORDS: moose extension command line options attributes configuration file
 
 use Moose::Role;
@@ -101,9 +101,9 @@ __END__
 
 =head1 DESCRIPTION
 
-This role loads simple configfiles to set object attributes.  It
+This role loads simple files to set object attributes.  It
 is based on the abstract role L<MooseX::ConfigFromFile>, and uses
-L<Config::Any> to load your configfile.  L<Config::Any> will in
+L<Config::Any> to load your configuration file.  L<Config::Any> will in
 turn support any of a variety of different config formats, detected
 by the file extension.  See L<Config::Any> for more details about
 supported formats.
@@ -117,7 +117,7 @@ C<config_any_args()> method, for example:
     };
   }
 
-Like all L<MooseX::ConfigFromFile> -derived configfile loaders, this
+Like all L<MooseX::ConfigFromFile> -derived file loaders, this
 module is automatically supported by the L<MooseX::Getopt> role as
 well, which allows specifying C<-configfile> on the command line.
 
@@ -128,7 +128,7 @@ well, which allows specifying C<-configfile> on the command line.
 =head2 configfile
 
 Provided by the base role L<MooseX::ConfigFromFile>.  You can
-provide a default configfile pathname like so:
+provide a default configuration file pathname like so:
 
   has '+configfile' => ( default => '/etc/myapp.yaml' );
 
@@ -145,8 +145,8 @@ Config files are trivially merged at the top level, with the right-hand files ta
 
 Provided by the base role L<MooseX::ConfigFromFile>.  Acts just like
 regular C<new()>, but also accepts an argument C<configfile> to specify
-the configfile from which to load other attributes.  Explicit arguments
-to C<new_with_config> will override anything loaded from the configfile.
+the file from which to load other attributes.  Explicit arguments
+to C<new_with_config> will override anything loaded from the file.
 
 =head2 get_config_from_file
 
