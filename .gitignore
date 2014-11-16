@@ -1,3 +1,6 @@
+/.ackrc
 /.build/
-!.gitignore
-/MooseX-SimpleConfig-*
+!/.gitignore
+/.latest
+/MooseX-SimpleConfig-*/
+/MooseX-SimpleConfig-*.tar.gz
