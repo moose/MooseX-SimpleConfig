@@ -1,5 +1,6 @@
 package MooseX::SimpleConfig;
 # ABSTRACT: A Moose role for setting attributes from a simple configfile
+# KEYWORDS: moose extension command line options attributes configuration file
 
 use Moose::Role;
 with 'MooseX::ConfigFromFile';
