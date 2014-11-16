@@ -4,7 +4,6 @@ use warnings;
 use lib 't/lib';
 
 use Test::More tests => 6;
-use Test::Requires 'Config::General';
 use Test::Fatal;
 use File::Temp 'tempdir';
 use File::Spec::Functions;
@@ -23,16 +22,18 @@ BEGIN {
 # Can it load a simple YAML file with the options
 {
     my $tempdir = tempdir(DIR => 't', CLEANUP => 1);
-    my $configfile = catfile($tempdir, 'test.conf');
+    my $configfile = catfile($tempdir, 'test.pl');
 
-    open(my $test_conf, '>', $configfile)
+    open(my $test_pl, '>', $configfile)
       or die "Cannot create $configfile: $!";
-    print $test_conf <<EOM;
-Direct_Attr 123
-Inherited_Ro_Attr asdf
-Req_Attr foo
+    print $test_pl <<EOM;
+{
+    direct_attr => 123,
+    inherited_ro_attr => 'asdf',
+    req_attr => 'foo',
+}
 EOM
-    close($test_conf);
+    close($test_pl);
 
     my $foo;
     is(
