@@ -2,7 +2,7 @@ use strict;
 use warnings;
 
 use lib 't/lib';
-use Test::More;
+use Test::More 0.88;
 use Test::Fatal;
 use File::Temp 'tempdir';
 use File::Spec::Functions;
